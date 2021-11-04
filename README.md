@@ -25,32 +25,50 @@ sprov 大神又用 GO 语言重新开发了一套面板 X-UI。那这套面板�
 
 VPS 一台重置好主流的操作系统 （CentOS 7+、Ubuntu 16+、Debian 8+）
 
-域名一个，做好相关的解析，若是需要套用 CDN，请托管域名到 cloudflare
+域名一个，做好相关的解析，若是需要套用 CDN，请托管域名到 cloudflare。
 
 
-#安装 X-ui 面板
 
-申请 SSL 证书
+
 
 下面环境的安装方式，大家根据自己的系统选择命令安装就好了。
 
-更新及安装组件
+#更新及安装组件
+
+
 apt update -y          # Debian/Ubuntu 命令
 
 apt install -y curl    #Debian/Ubuntu 命令
 
 apt install -y socat    #Debian/Ubuntu 命令
 
+
+#申请SSL证书
+
 安装 Acme 脚本
 
 curl https://get.acme.sh | sh
+
 curl https://get.acme.sh | sh
+
 
 
 80 端口空闲的证书申请方式
 
 自行更换代码中的域名、邮箱为你解析的域名及邮箱
+
 ~/.acme.sh/acme.sh --register-account -m xxxx@xxxx.com
 
 ~/.acme.sh/acme.sh  --issue -d mydomain.com   --standalone
 
+
+
+安装证书到指定文件夹
+
+自行更换代码中的域名为你解析的域名
+
+~/.acme.sh/acme.sh --installcert -d mydomain.com --key-file /root/private.key --fullchain-file /root/cert.crt
+
+#安装 & 升级 X-ui 面板
+
+bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
